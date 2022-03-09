@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Activities</string>
+    <string name="activity_1">Activity 1</string>
+    <string name="go_activity_2">Go Activity 2</string>
+    <string name="acctivity_2">Acctivity 2</string>
+    <string name="go_activity_3">Go Activity 3</string>
+    <string name="activity_3">Activity 3</string>
+    <string name="back_activity_2">back activity 2</string>
+</resources>
