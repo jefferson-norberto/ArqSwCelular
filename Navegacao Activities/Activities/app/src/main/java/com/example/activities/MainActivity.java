@@ -13,6 +13,8 @@ import android.widget.Button;
 
 import com.example.activities.databinding.ActivityMainBinding;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -31,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyIntentService.class);
         intent.putExtra("TELA", "Tela Principal");
         startService(intent);
+
+        List<MyContact> contacts = ContactsHelper.getContacts(this);
+
+        if(contacts.size() >= 1){
+            MyContact contact = contacts.get(0);
+            Log.d("JMN", "ID: " + contact.getId() + " Name: " + contact.getName());
+        }
+
+
     }
 
     @Override

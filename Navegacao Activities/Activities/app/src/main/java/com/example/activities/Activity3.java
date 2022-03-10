@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.example.activities.databinding.Activity3Binding;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 public class Activity3 extends AppCompatActivity {
     private Activity3Binding binding;
@@ -45,5 +49,11 @@ public class Activity3 extends AppCompatActivity {
         binding.buttonGoToActivity4.setOnClickListener(view -> {
             Snackbar.make(this, view, "Não há tela 4", Snackbar.LENGTH_LONG).show();
         });
+
+        List<MyContact> contacts = ContactsHelper.getContacts(this);
+        if(contacts.size() >= 3){
+            MyContact contact = contacts.get(2);
+            Log.d("JMN", "ID: " + contact.getId() + " Name: " + contact.getName());
+        }
     }
 }
