@@ -1,0 +1,21 @@
+Button 1:
+ERRO:android.content.ActivityNotFoundException: Unable to find explicit activity class {com.example.cinapp/com.example.cinapp.MyActivity};
+SOLUÇÃO:Declarar a activity no manifest.xml
+
+Button 2:
+ERRO: java.lang.RuntimeException: Unable to start service com.example.cinapp.MyService1@34c15f0 with Intent { cmp=com.example.cinapp/.MyService1 }: java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String android.os.Bundle.getString(java.lang.String)' on a null object reference
+SOLUÇÃO: Colocar o intent.putExtra("TEXTO", "Resolvido"); antes de iniciar o service. por precaução foi colocado a seguinte verificação no service if(intent.getExtras() != null).
+
+Button 3:
+ERRO: java.lang.NullPointerException: Attempt to invoke virtual method 'void android.os.Bundle.putString(java.lang.String, java.lang.String)' on a null object reference
+SOLUÇÃO: Adicionar a permissão no manifest <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" /> e dada as devidas permissões nas configurações do app no device.
+trocar o intent.getExtras().PutString() por intent.putExtras()
+
+Button 4:
+ERRO:java.lang.RuntimeException: Unable to start activity ComponentInfo{com.example.cinapp/com.example.cinapp.MyLocationActivity}: java.lang.SecurityException: uid 10133 does not have android.permission.ACCESS_COARSE_LOCATION or android.permission.ACCESS_FINE_LOCATION.
+SOLUÇÃO: adicionar as permições no android manifest, conceder as permissões nas configurações do app.
+
+
+ERRO: NullpointerException linha 26 MyLocationActivity (LOGCAT)
+Solução: Adicionar uma verificação if(location != null) antes de atualizar a localização
