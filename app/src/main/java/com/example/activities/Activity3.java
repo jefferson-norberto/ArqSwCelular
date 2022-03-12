@@ -60,8 +60,6 @@ public class Activity3 extends AppCompatActivity {
                 MyContact contact = contacts.get(2);
                 Log.d("JMN", "ID: " + contact.getId() + " Name: " + contact.getName());
             }
-        }else{
-            contactPermission.errorPermission();
         }
 
     }

@@ -42,16 +42,19 @@ public class MainActivity extends AppCompatActivity {
         startService(intent);
 
         if(contactPermission.havePermission()){
-            List<MyContact> contacts = ContactsHelper.getContacts(this);
-
-            if(contacts.size() >= 1){
-                MyContact contact = contacts.get(0);
-                Log.d("JMN", "ID: " + contact.getId() + " Name: " + contact.getName());
-            }
+            getContact();
         }else{
             contactPermission.setPermission();
         }
 
+    }
+
+    void getContact(){
+        List<MyContact> contacts = ContactsHelper.getContacts(this);
+        if(contacts.size() >= 1){
+            MyContact contact = contacts.get(0);
+            Log.d("JMN", "ID: " + contact.getId() + " Name: " + contact.getName());
+        }
     }
 
     @Override
@@ -78,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         if(!contactPermission.havePermission()){
             Log.i("Permission: ", "Permission has been denied by user");
             contactPermission.errorPermission();
+        }else{
+            getContact();
         }
     }
 
