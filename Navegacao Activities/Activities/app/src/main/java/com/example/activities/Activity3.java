@@ -3,6 +3,7 @@ package com.example.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +16,15 @@ import java.util.List;
 
 public class Activity3 extends AppCompatActivity {
     private Activity3Binding binding;
+    private Permissions contactPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = Activity3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        contactPermission = new Permissions(this, Manifest.permission.READ_CONTACTS);
 
         Intent intent = new Intent(this, MyIntentService.class);
         intent.putExtra("TELA", "Tela 3");
@@ -50,10 +54,15 @@ public class Activity3 extends AppCompatActivity {
             Snackbar.make(this, view, "Não há tela 4", Snackbar.LENGTH_LONG).show();
         });
 
-        List<MyContact> contacts = ContactsHelper.getContacts(this);
-        if(contacts.size() >= 3){
-            MyContact contact = contacts.get(2);
-            Log.d("JMN", "ID: " + contact.getId() + " Name: " + contact.getName());
+        if(contactPermission.havePermission()){
+            List<MyContact> contacts = ContactsHelper.getContacts(this);
+            if(contacts.size() >= 3){
+                MyContact contact = contacts.get(2);
+                Log.d("JMN", "ID: " + contact.getId() + " Name: " + contact.getName());
+            }
+        }else{
+            contactPermission.errorPermission();
         }
+
     }
 }
